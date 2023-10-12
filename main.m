@@ -1,21 +1,30 @@
 clc;
 clear all;
 close all;
-xn= input('Escolha um sinal =');
-N= input('Valor de N = ');
+xn= ones(1,8);
+N= 16;
 
-tic;
-xk = mainFFT(xn,N);
-t(1)= toc;
-
-
+%xn = zeros(1,8);
+%xn(1,1)= 1;
+   
 tic;
 xk1 =  df_transform(xn,N);
-t(2)= toc;
+t(1)= toc
+   
+tic;
+xk = myFFT(xn,N);
+t(2)= toc
+
 
 tic;
-fourierFFT= fft(xn);
+xk5= fft(xn,N);
 t(3)= toc
+
+tic;
+xk4 = minhaFFT_iterativa(xn, N);
+t(4)= toc
+
+
 
 k=0:N-1;
 subplot(2,1,1)
